@@ -13,11 +13,14 @@ const container = document.querySelector(".container");
 const messageText = document.querySelector(".message-text");
 const messageBody = document.querySelector(".message");
 const restartBtn = document.querySelector("#btn");
+const clickSound = new Audio('assets/click.mp3');
+const clapSound = new Audio('assets/finish.wav');
 let circleTurn = false;
 
 
 //Putting symbol on the cell
 const placeSymbol = function (currCell, currClass) {
+  clickSound.play();
   currCell.classList.add(currClass);
 };
 
@@ -55,6 +58,7 @@ const endGame = function (flag) {
     messageText.innerHTML = `${circleTurn ? "O" : "X"} Wins!`;
   }
   messageBody.classList.remove("hidden");
+  clapSound.play();
 };
 
 //Check For Draw
