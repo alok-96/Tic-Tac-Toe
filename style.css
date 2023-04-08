@@ -1,0 +1,161 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --cell-size: 130px;
+    --symbol-size: calc(var(--cell-size)*0.7);
+    --border-color: #120c09;
+    --background-color: #443022;
+    --symbol-color: #684d25;
+    --hover-color: #58524a;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    align-content: center; 
+    background-color: #706742;
+    font-family:sans-serif;
+    background-image: url(bg.jpg);
+    background-size: cover; 
+    background-position: center;
+}
+
+.cell{
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: var(--background-color);
+    border: 10px solid transparent;
+    box-shadow: 5px 5px 40px 10px var(--border-color) inset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Styles For Corner Cells */
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3){
+    border-top: 20px solid var(--border-color);
+}
+
+.cell:nth-child(3n + 1){
+    border-left: 20px solid var(--border-color);
+    width: 140px;
+}
+
+.cell:nth-child(3n + 3){
+    border-right: 20px solid var(--border-color);
+    width: 140px;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:last-child {
+    border-bottom: 20px solid var(--border-color);
+}
+
+
+/* Cross Symbol Formation */
+.cell.cross::before,
+.cell.cross::after,
+.container.cross .cell:not(.cross):not(.circle):hover::before,
+.container.cross .cell:not(.cross):not(.circle):hover::after  {
+    content: '';
+    width: calc(var(--symbol-size) * 0.2);
+    height: var(--symbol-size);
+    background-color: var(--symbol-color);
+    position: absolute;
+}
+
+.cell.cross::before,
+.container.cross .cell:not(.cross):not(.circle):hover::before {
+    transform: rotate(45deg);
+}
+
+.cell.cross::after,
+.container.cross .cell:not(.cross):not(.circle):hover::after {
+    transform: rotate(-45deg);
+}
+
+.container.cross .cell:not(.cross):not(.circle):hover::before,
+.container.cross .cell:not(.cross):not(.circle):hover::after{
+    background-color: var(--hover-color);
+}
+
+/* Circle Symbol Formation */
+.cell.circle::before,
+.cell.circle::after,
+.container.circle .cell:not(.cross):not(.circle):hover::before,
+.container.circle .cell:not(.cross):not(.circle):hover::after {
+    content: '';
+    border-radius: 50%;
+    position: absolute;
+}
+
+.cell.circle::before,
+.container.circle .cell:not(.cross):not(.circle):hover::before {
+    width: var(--symbol-size);
+    height: var(--symbol-size);
+    background-color: var(--symbol-color);
+}
+
+.cell.circle::after,
+.container.circle .cell:not(.cross):not(.circle):hover::after {
+    width: calc(var(--symbol-size) * 0.6);
+    height: calc(var(--symbol-size) * 0.6);
+    background-color: var(--background-color);
+    box-shadow: 5px 5px 20px 5px var(--border-color) inset;
+}
+
+.container.circle .cell:not(.cross):not(.circle):hover::before{
+    background-color: var(--hover-color);
+}
+
+.cell.cross, .cell.circle{
+    cursor: not-allowed;
+}
+
+/* Winnig Message */
+.message{
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.message-text{
+    font-size: 5rem;
+    color: white;
+}
+
+.message button{
+    font-size: 3rem;
+    padding:  0.5rem 1rem; 
+    border: 2ps solid black;
+    cursor: pointer;
+}
+
+.message button:hover {
+    color: white;
+    background-color: black;
+    border: 2px solid white;
+}
