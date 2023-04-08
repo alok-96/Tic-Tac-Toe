@@ -5,7 +5,7 @@
 }
 
 :root{
-    --cell-size: 130px;
+    --cell-size: 7rem;
     --symbol-size: calc(var(--cell-size)*0.7);
     --border-color: #120c09;
     --background-color: #443022;
@@ -20,9 +20,8 @@
     grid-template-columns: repeat(3, auto);
     justify-content: center;
     align-content: center; 
-    background-color: #706742;
     font-family:sans-serif;
-    background-image: url(bg.jpg);
+    background-image: url(assets/background.jpg);
     background-size: cover; 
     background-position: center;
 }
@@ -48,12 +47,12 @@
 
 .cell:nth-child(3n + 1){
     border-left: 20px solid var(--border-color);
-    width: 140px;
+    width: 8rem;
 }
 
 .cell:nth-child(3n + 3){
     border-right: 20px solid var(--border-color);
-    width: 140px;
+    width: 8rem;
 }
 
 .cell:nth-child(7),
@@ -150,7 +149,7 @@
 .message button{
     font-size: 3rem;
     padding:  0.5rem 1rem; 
-    border: 2ps solid black;
+    border: 2px solid black;
     cursor: pointer;
 }
 
@@ -158,4 +157,26 @@
     color: white;
     background-color: black;
     border: 2px solid white;
+}
+
+
+
+/* Media Queries */
+
+@media screen and (max-width: 450px) {
+    :root {
+        --cell-size: 6rem;
+    }
+
+    .cell{
+        border: 8px solid transparent;
+    }
+
+    .cell:nth-child(3n + 1) {
+        width: 7rem;
+    }
+
+    .cell:nth-child(3n + 3) {
+        width: 7rem;
+    }
 }
